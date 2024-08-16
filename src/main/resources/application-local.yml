@@ -1,0 +1,40 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/${MONGO_DB_NAME:mydatabase}
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.server}/realms/${keycloak.realm}
+
+MAIL_HOST: ${EMAIL_HOST:sandbox.smtp.mailtrap.io}
+MAIL_PORT: ${EMAIL_PORT:2525}
+MAIL_USERNAME: ${EMAIL_USERNAME}
+MAIL_PASSWORD: ${EMAIL_PASSWORD}
+MAIL_SENDER: ${EMAIL_SENDER}
+
+FRONTEND_URL: ${FRONTEND_BASE_URL:https://localhost:3000}
+
+keycloak:
+  server: http://localhost:8090
+  username: admin
+  password: admin
+  realm:
+  client:
+  principal_attribute: preferred_username
+  enabled:
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:3600}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: '/swagger-ui.html'
+    filter: true
+    tags-sorter: alpha
